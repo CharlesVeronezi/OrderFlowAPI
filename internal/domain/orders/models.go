@@ -3,15 +3,15 @@ package orders
 import "time"
 
 type Order struct {
-	OrOrderid         string    `json:"or_orderID"`
-	OrUserid          string    `json:"or_userID"`
-	OrProducts        []Product `json:"or_products"`
-	OrTotalamount     float64   `json:"or_total_amount"`
-	OrOrderstatus     string    `json:"or_order_status"`
-	OrPaymentmethod   string    `json:"or_payment_method"`
-	OrShippingaddress Address   `json:"or_shipping_address"`
-	OrCreatedat       time.Time `json:"or_created_at"`
-	OrUpdatedat       time.Time `json:"or_updated_at"`
+	OrOrderid         string          `json:"or_orderid"`
+	OrUserid          string          `json:"or_userid"`
+	OrProducts        []Order_Product `json:"or_products"`
+	OrTotalamount     float64         `json:"or_total_amount"`
+	OrOrderstatus     string          `json:"or_order_status"`
+	OrPaymentmethod   string          `json:"or_payment_method"`
+	OrShippingaddress string          `json:"or_shipping_address"`
+	OrCreatedat       time.Time       `json:"or_created_at"`
+	OrUpdatedat       time.Time       `json:"or_updated_at"`
 }
 
 type Address struct {
@@ -26,8 +26,16 @@ type Address struct {
 type Product struct {
 	PrProductID   string  `json:"pr_productID"`
 	PrDescription string  `json:"pr_description"`
+	PrStock       int     `json:"pr_stock"`
 	PrPrice       float64 `json:"pr_price"`
-	PrVbActive    bool    `json:"pr_vb_active"`
+	PrVbActive    bool    `json:"pr_vbactive"`
+}
+
+type Order_Product struct {
+	OrpOrderid    string  `json:"orp_orderID"`
+	OrpProductid  string  `json:"orp_productID"`
+	OrpQuantidad  int     `json:"orp_quantidad"`
+	OrpTotalprice float64 `json:"orp_totalprice"`
 }
 
 type User struct {
@@ -35,5 +43,5 @@ type User struct {
 	UsFirstname string `json:"us_firstname"`
 	UsLastname  string `json:"us_lastname"`
 	UsEmail     string `json:"us_email"`
-	UsVbActive  bool   `json:"us_vb_active"`
+	UsVbActive  bool   `json:"us_vbactive"`
 }

@@ -49,9 +49,9 @@ func run(ctx context.Context) error {
 	defer pool.Close()
 
 	app := fiber.New()
-	httpapi.Handler(app, pool)
+	httpapi.Handler(app, pool, logger)
 
-	err = app.Listen(":8080")
+	err = app.Listen(":3000")
 	if err != nil {
 		return err
 	}
