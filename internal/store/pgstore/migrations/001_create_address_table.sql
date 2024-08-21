@@ -1,4 +1,5 @@
-CREATE TABLE IF NOT EXISTS address (
+CREATE TABLE IF NOT EXISTS address
+(
     "ad_addressid" uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
     "ad_street"    VARCHAR(256)     NOT NULL,
     "ad_city"      VARCHAR(256)     NOT NULL,
