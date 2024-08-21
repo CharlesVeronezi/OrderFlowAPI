@@ -1,17 +1,10 @@
-package orders
+package api
 
 import "time"
 
-type Order struct {
-	OrOrderid         string          `json:"or_orderid"`
-	OrUserid          string          `json:"or_userid"`
-	OrProducts        []Order_Product `json:"or_products"`
-	OrTotalamount     float64         `json:"or_total_amount"`
-	OrOrderstatus     string          `json:"or_order_status"`
-	OrPaymentmethod   string          `json:"or_payment_method"`
-	OrShippingaddress string          `json:"or_shipping_address"`
-	OrCreatedat       time.Time       `json:"or_created_at"`
-	OrUpdatedat       time.Time       `json:"or_updated_at"`
+type DefaultResponseID struct {
+	ID      string `json:"id"`
+	Message string `json:"message"`
 }
 
 type Address struct {
@@ -44,4 +37,16 @@ type User struct {
 	UsLastname  string `json:"us_lastname"`
 	UsEmail     string `json:"us_email"`
 	UsVbActive  bool   `json:"us_vbactive"`
+}
+
+type Order struct {
+	OrOrderid         string          `json:"or_orderid"`
+	OrUserid          string          `json:"or_userid"`
+	OrProducts        []Order_Product `json:"or_products"`
+	OrTotalamount     float64         `json:"or_total_amount"`
+	OrOrderstatus     string          `json:"or_order_status"`
+	OrPaymentmethod   string          `json:"or_payment_method"`
+	OrShippingaddress string          `json:"or_shipping_address"`
+	OrCreatedat       time.Time       `json:"or_created_at"`
+	OrUpdatedat       time.Time       `json:"or_updated_at"`
 }

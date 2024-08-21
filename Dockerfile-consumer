@@ -1,0 +1,27 @@
+FROM golang:alpine as build
+
+WORKDIR /app
+
+# Copy Go module files
+COPY go.* ./
+
+# Download dependencies
+RUN go mod download
+
+# Copy source files
+COPY ./scripts/consumer ./scripts/consumer
+
+# Build
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o ./bin/consumer ./scripts/consumer/consumer.go
+
+FROM alpine:3.14.10
+
+# Copy files from builder stage
+COPY --from=build /app/bin/consumer .
+
+# Increase GC percentage and limit the number of OS threads
+ENV GOGC 1000
+ENV GOMAXPROCS 3
+
+# Run binary
+CMD ["/consumer"]

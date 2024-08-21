@@ -10,6 +10,22 @@ SELECT "or_orderid",
 FROM orders
 WHERE "or_orderid" = $1;
 
+-- name: GetOrderOrderID :many
+SELECT
+    ord.or_orderid,
+    ord.or_totalamount,
+    ord.or_orderstatus,
+    ord.or_paymentmethod,
+    ord.or_createdat,
+    pdt.pr_description,
+    pdt.pr_price,
+    orp.orp_quantidad,
+    orp.orp_totalprice
+FROM orders ord
+         JOIN orders_products orp ON orp.orp_orderid = ord.or_orderid
+         JOIN products pdt ON pdt.pr_productid = orp.orp_productid
+WHERE ord.or_orderid = $1;
+
 -- name: InsertOrder :one
 INSERT INTO orders (
     "or_userid",
